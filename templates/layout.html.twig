@@ -2,30 +2,33 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <!-- Compiled and minified CSS -->
+        <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href={{asset("parallax-template/css/materialize.min.css")}}  media="screen,projection"/>
+      <script type="text/javascript" src={{asset("parallax-templatejs/materialize.min.js")}}></script>
+   
         <title>{% block title %}Welcome!{% endblock %}</title>
-         <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href={{asset("bundles/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css")}}>
-  <!-- iCheck -->
-  <link rel="stylesheet" href={{asset("bundles/plugins/icheck-bootstrap/icheck-bootstrap.min.css")}}>
-  <!-- JQVMap -->
-  <link rel="stylesheet" href={{asset("bundles/plugins/jqvmap/jqvmap.min.css")}}>
-  <!-- Theme style -->
-  <link rel="stylesheet" href={{asset("bundles/dist/css/adminlte.min.css")}}>
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href={{asset("bundles/plugins/overlayScrollbars/css/OverlayScrollbars.min.css")}}>
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href={{asset("bundles/plugins/daterangepicker/daterangepicker.css")}}>
-  <!-- summernote -->
-  <link rel="stylesheet" href={{asset("bundles/plugins/summernote/summernote-bs4.min.css")}}>
-        {% block stylesheets %}{% endblock %}
+       {% block stylesheets %}{% endblock %}
     </head>
     <body>
+    	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:#26a69a;">
+	    <div class="nav-wrapper  ">
+	    	<div class="container">
+        	<a href="#" class="brand-logo">Nabih Pressing</a>
+	    	
+			      	<ul id="nav-mobile" class="right hide-on-med-and-down">
+			       
+			        {% if app.user %}
+						<li><a href="/logout">Logout</a></li>
+					{% else %}
+						<li><a href="/register">register</a></li>
+			        {% endif %}
+		      	</ul>
+	    	</div>
+	    </div>
+  	</nav>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     
