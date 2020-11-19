@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Habits index{% endblock %}
+
+{% block body %}
+    <h1>Habits index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>TarifHabit</th>
+                <th>ReferenceHabit</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for habit in habits %}
+            <tr>
+                <td>{{ habit.id }}</td>
+                <td>{{ habit.TarifHabit }}</td>
+                <td>{{ habit.ReferenceHabit }}</td>
+                <td>
+                    <a href="{{ path('habits_show', {'id': habit.id}) }}">show</a>
+                    <a href="{{ path('habits_edit', {'id': habit.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('habits_new') }}">Create new</a>
+{% endblock %}

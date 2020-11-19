@@ -12,20 +12,15 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
        {% block stylesheets %}{% endblock %}
     </head>
-    <body>
+    <body >
     	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:#26a69a;">
 	    <div class="nav-wrapper  ">
+    
+      
+       
 	    	<div class="container">
         	<a href="#" class="brand-logo">Nabih Pressing</a>
 	    	
-			      	<ul id="nav-mobile" class="right hide-on-med-and-down">
-			       
-			        {% if app.user %}
-						<li><a href="/logout">Logout</a></li>
-					{% else %}
-						<li><a href="/register">register</a></li>
-			        {% endif %}
-		      	</ul>
 	    	</div>
 	    </div>
   	</nav>

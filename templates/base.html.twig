@@ -77,9 +77,11 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
+  <div>
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link text-dark"  style="background-color:#26a69a;">
+    <a href="\main" class="brand-link text-dark"  style="background-color:#26a69a;">
+    
       <span class="brand-text font-weight-light">Nabih Pressing</span>
     </a>
 
@@ -96,9 +98,9 @@
 			       
         <div class="info">
          {% if app.user %}  
-          <a href="#" class="d-block"> {{ app.user.Username }}</a>
+          <a href="/main" class="d-block"> {{ app.user.Username }}</a>
           	{% else %}
-             <a href="#" class="d-block"> </a>
+             <a href="/" class="d-block">  Identifiez Vous</a>
            {% endif %}
         </div>
       </div>
@@ -113,7 +115,52 @@
           <li class="nav-item menu-open">
             
             <ul class="nav nav-treeview">
+               <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+               Dashboard
+             
+              </p>
+            </a>
+          </li>
+            <li class="nav-item">
+            <a href="/calendar" class="nav-link">
+              <i class="nav-icon far fa-calendar-alt"></i>
+              <p>
+                Calendar
               
+              </p>
+            </a>
+          </li>
+            <li class="nav-item">
+            <a href="/client" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+             Client
+             
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/habits" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+            Tarif Habit 
+             
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="/achat" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+           Achat
+             
+              </p>
+            </a>
+          </li>
+      
           <li class="nav-item">
             <a href={{ path('app_logout') }} class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -123,7 +170,7 @@
               </p>
             </a>
           </li>
-        
+         
            
             
          
@@ -131,6 +178,7 @@
           
       
         </ul>
+        
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -159,7 +207,8 @@
 
     <!-- Main content -->
     <section class="content">
-     
+         {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
     </section>
     <!-- /.content -->
   </div>

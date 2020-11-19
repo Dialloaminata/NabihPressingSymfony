@@ -2,8 +2,11 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
- <div class="container center">
-        <h1>Connexion</h1>
+
+ <div class="container center" style="background-image: src={{asset("parallax-template/NB.jpg")}}    ">
+ <fieldset class="container center col s12">
+ <legend> <h1>Connexion</h1></legend>
+        
         <form method="post" class="row">
             {% if error %}
                 <div class="col s12 m6 l6 offset-m3 offset-l3">
@@ -13,7 +16,7 @@
 
             {% if app.user %}
                 <div class="col s12 m6 l6 offset-m3 offset-l3">
-                    Tu es actuellement connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnecte-toi</a>
+                    Tu es actuellement connecté en tant que {{ app.user.Username }}, <a href="{{ path('app_logout') }}">Déconnecte-toi</a>
                 </div>
             {% endif %}
             <div class="input-field col s12 m6 l6 offset-m3 offset-l3">
@@ -38,7 +41,14 @@
 
             <div class="input-field col s12">
                 <input type="submit" class="btn btn-primary" value="Me connecter">
+                <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Mot de passe Oublié</a>
+                  </br>
+                  <h5> Vous n'avez pas de compte?<a href="/register"> Inscrivez-vous</a>  </h5>  
             </div>
+          
+             </fieldset>
+
         </form>
+
     </div>
 {% endblock %}
