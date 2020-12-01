@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ClientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class Client
      * @ORM\Column(type="string", length=50)
      */
     private $AddresseClient;
+
+    /**
+     * @ORM\OneToMany(targetEntity=LotHabit::class, mappedBy="Client")
+     */
+    private $lotHabits;
+
+    public function __construct()
+    {
+        $this->lotHabits = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +98,36 @@ class Client
     public function setAddresseClient(string $AddresseClient): self
     {
         $this->AddresseClient = $AddresseClient;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|LotHabit[]
+     */
+    public function getLotHabits(): Collection
+    {
+        return $this->lotHabits;
+    }
+
+    public function addLotHabit(LotHabit $lotHabit): self
+    {
+        if (!$this->lotHabits->contains($lotHabit)) {
+            $this->lotHabits[] = $lotHabit;
+            $lotHabit->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLotHabit(LotHabit $lotHabit): self
+    {
+        if ($this->lotHabits->removeElement($lotHabit)) {
+            // set the owning side to null (unless already changed)
+            if ($lotHabit->getClient() === $this) {
+                $lotHabit->setClient(null);
+            }
+        }
 
         return $this;
     }

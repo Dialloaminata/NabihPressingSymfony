@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LotHabitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,22 @@ class LotHabit
      * @ORM\Column(type="string", length=10)
      */
     private $EtatHabit;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="lotHabits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Client;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Habits::class, mappedBy="LotHabits")
+     */
+    private $habits;
+
+    public function __construct()
+    {
+        $this->habits = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +104,48 @@ class LotHabit
     public function setEtatHabit(string $EtatHabit): self
     {
         $this->EtatHabit = $EtatHabit;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->Client;
+    }
+
+    public function setClient(?Client $Client): self
+    {
+        $this->Client = $Client;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Habits[]
+     */
+    public function getHabits(): Collection
+    {
+        return $this->habits;
+    }
+
+    public function addHabit(Habits $habit): self
+    {
+        if (!$this->habits->contains($habit)) {
+            $this->habits[] = $habit;
+            $habit->setLotHabits($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHabit(Habits $habit): self
+    {
+        if ($this->habits->removeElement($habit)) {
+            // set the owning side to null (unless already changed)
+            if ($habit->getLotHabits() === $this) {
+                $habit->setLotHabits(null);
+            }
+        }
 
         return $this;
     }

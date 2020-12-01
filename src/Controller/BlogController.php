@@ -17,18 +17,5 @@ class BlogController extends AbstractController
             'controller_name' => 'BlogController',
         ]);
     }
-    public function admin()
-    {
-        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(
-            [],
-            ['lastUpdateDate' => 'DESC']
-        );
-
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-
-        return $this->render('admin/index.html.twig', [
-            'articles' => $articles,
-            'users' => $users
-        ]);
-    }
+   
 }

@@ -27,6 +27,12 @@ class Habits
      */
     private $ReferenceHabit;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=LotHabit::class, inversedBy="habits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $LotHabits;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +58,18 @@ class Habits
     public function setReferenceHabit(string $ReferenceHabit): self
     {
         $this->ReferenceHabit = $ReferenceHabit;
+
+        return $this;
+    }
+
+    public function getLotHabits(): ?LotHabit
+    {
+        return $this->LotHabits;
+    }
+
+    public function setLotHabits(?LotHabit $LotHabits): self
+    {
+        $this->LotHabits = $LotHabits;
 
         return $this;
     }

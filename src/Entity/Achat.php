@@ -42,6 +42,12 @@ class Achat
      */
     private $Nom_utilisateur;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="achats")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $User;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +109,18 @@ class Achat
     public function setNomUtilisateur(string $Nom_utilisateur): self
     {
         $this->Nom_utilisateur = $Nom_utilisateur;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }
