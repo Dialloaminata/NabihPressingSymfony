@@ -20,9 +20,9 @@ class LotHabit
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=20)
      */
-    private $ReferenceHabit;
+    private $ReferenceLot;
 
     /**
      * @ORM\Column(type="date")
@@ -32,27 +32,31 @@ class LotHabit
     /**
      * @ORM\Column(type="date")
      */
-    private $DateRemise;
+    private $DateRetrait;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=20)
      */
-    private $EtatHabit;
+    private $Etat;
 
     /**
      * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="lotHabits")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $Client;
 
     /**
-     * @ORM\OneToMany(targetEntity=Habits::class, mappedBy="LotHabits")
+     * @ORM\ManyToMany(targetEntity=TypeHabit::class, inversedBy="lotHabits")
      */
-    private $habits;
+    private $Habit;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $Prix;
 
     public function __construct()
     {
-        $this->habits = new ArrayCollection();
+        $this->Habit = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -60,14 +64,14 @@ class LotHabit
         return $this->id;
     }
 
-    public function getReferenceHabit(): ?string
+    public function getReferenceLot(): ?string
     {
-        return $this->ReferenceHabit;
+        return $this->ReferenceLot;
     }
 
-    public function setReferenceHabit(string $ReferenceHabit): self
+    public function setReferenceLot(string $ReferenceLot): self
     {
-        $this->ReferenceHabit = $ReferenceHabit;
+        $this->ReferenceLot = $ReferenceLot;
 
         return $this;
     }
@@ -84,26 +88,26 @@ class LotHabit
         return $this;
     }
 
-    public function getDateRemise(): ?\DateTimeInterface
+    public function getDateRetrait(): ?\DateTimeInterface
     {
-        return $this->DateRemise;
+        return $this->DateRetrait;
     }
 
-    public function setDateRemise(\DateTimeInterface $DateRemise): self
+    public function setDateRetrait(\DateTimeInterface $DateRetrait): self
     {
-        $this->DateRemise = $DateRemise;
+        $this->DateRetrait = $DateRetrait;
 
         return $this;
     }
 
-    public function getEtatHabit(): ?string
+    public function getEtat(): ?string
     {
-        return $this->EtatHabit;
+        return $this->Etat;
     }
 
-    public function setEtatHabit(string $EtatHabit): self
+    public function setEtat(string $Etat): self
     {
-        $this->EtatHabit = $EtatHabit;
+        $this->Etat = $Etat;
 
         return $this;
     }
@@ -119,33 +123,44 @@ class LotHabit
 
         return $this;
     }
-
-    /**
-     * @return Collection|Habits[]
-     */
-    public function getHabits(): Collection
+    public function __toString()
     {
-        return $this->habits;
+        $format = "%s \n";
+        return sprintf($format, $this->ReferenceLot);
     }
 
-    public function addHabit(Habits $habit): self
+    /**
+     * @return Collection|TypeHabit[]
+     */
+    public function getHabit(): Collection
     {
-        if (!$this->habits->contains($habit)) {
-            $this->habits[] = $habit;
-            $habit->setLotHabits($this);
+        return $this->Habit;
+    }
+
+    public function addHabit(TypeHabit $habit): self
+    {
+        if (!$this->Habit->contains($habit)) {
+            $this->Habit[] = $habit;
         }
 
         return $this;
     }
 
-    public function removeHabit(Habits $habit): self
+    public function removeHabit(TypeHabit $habit): self
     {
-        if ($this->habits->removeElement($habit)) {
-            // set the owning side to null (unless already changed)
-            if ($habit->getLotHabits() === $this) {
-                $habit->setLotHabits(null);
-            }
-        }
+        $this->Habit->removeElement($habit);
+
+        return $this;
+    }
+
+    public function getPrix(): ?int
+    {
+        return $this->Prix;
+    }
+
+    public function setPrix(int $Prix): self
+    {
+        $this->Prix = $Prix;
 
         return $this;
     }

@@ -1,4 +1,21 @@
+ <div class=" container center col-sm-8">
+  <fieldset class="container center col-sm-8 border border-secondary"  >
+     <legend> <h1> New Client</h1></legend>
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+       <button class="btn ">{{ button_label|default('Save') }}</button>
+      </div>
+  
+    <div class="col">
+      <!-- Simple link -->
+      <a href="{{ path('client_index') }}" class="btn " role="button" aria-disabled="true">Back To list</a>
+    
+    </div>
+  </div>
+    </fieldset>
+        </div>
+    
+ 
 {{ form_end(form) }}

@@ -37,11 +37,12 @@ class Achat
      */
     private $NumeroFacture;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Nom_utilisateur;
-
+  
+    public function __toString()
+    {
+        $format = "%s \n";
+        return sprintf($format, $this->NumeroFacture);
+    }
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="achats")
      * @ORM\JoinColumn(nullable=false)
@@ -101,17 +102,7 @@ class Achat
         return $this;
     }
 
-    public function getNomUtilisateur(): ?string
-    {
-        return $this->Nom_utilisateur;
-    }
-
-    public function setNomUtilisateur(string $Nom_utilisateur): self
-    {
-        $this->Nom_utilisateur = $Nom_utilisateur;
-
-        return $this;
-    }
+   
 
     public function getUser(): ?User
     {

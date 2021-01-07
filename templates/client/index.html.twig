@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Client index{% endblock %}
+{% block title %}Client {% endblock %}
 
 {% block body %}
-    <h1>Client index</h1>
+    <h1>Client </h1>
 
-    <table class="table">
+    <table class="table table-bordered ">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>NumClient</th>
-                <th>NomClient</th>
-                <th>PrenomClient</th>
-                <th>AddresseClient</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Addresse</th>
+                <th>Numero</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,10 +20,10 @@
         {% for client in clients %}
             <tr>
                 <td>{{ client.id }}</td>
-                <td>{{ client.NumClient }}</td>
-                <td>{{ client.NomClient }}</td>
-                <td>{{ client.PrenomClient }}</td>
-                <td>{{ client.AddresseClient }}</td>
+                <td>{{ client.Nom }}</td>
+                <td>{{ client.prenom }}</td>
+                <td>{{ client.addresse }}</td>
+                <td>{{ client.numero }}</td>
                 <td>
                     <a href="{{ path('client_show', {'id': client.id}) }}">show</a>
                     <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>

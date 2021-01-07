@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LotHabit{% endblock %}
+
+{% block body %}
+    <h1>LotHabit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ lot_habit.id }}</td>
+            </tr>
+            <tr>
+                <th>ReferenceLot</th>
+                <td>{{ lot_habit.ReferenceLot }}</td>
+            </tr>
+            <tr>
+                <th>DateDepot</th>
+                <td>{{ lot_habit.DateDepot ? lot_habit.DateDepot|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateRetrait</th>
+                <td>{{ lot_habit.DateRetrait ? lot_habit.DateRetrait|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ lot_habit.Etat }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('lot_habit_index') }}">back to list</a>
+
+    <a href="{{ path('lot_habit_edit', {'id': lot_habit.id}) }}">edit</a>
+
+    {{ include('lot_habit/_delete_form.html.twig') }}
+{% endblock %}

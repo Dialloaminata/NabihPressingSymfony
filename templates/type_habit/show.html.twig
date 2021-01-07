@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeHabit{% endblock %}
+
+{% block body %}
+    <h1>TypeHabit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ type_habit.id }}</td>
+            </tr>
+            <tr>
+                <th>ReferenceHabit</th>
+                <td>{{ type_habit.ReferenceHabit }}</td>
+            </tr>
+            <tr>
+                <th>Tarifs</th>
+                <td>{{ type_habit.Tarifs }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('type_habit_index') }}">back to list</a>
+
+    <a href="{{ path('type_habit_edit', {'id': type_habit.id}) }}">edit</a>
+
+    {{ include('type_habit/_delete_form.html.twig') }}
+{% endblock %}

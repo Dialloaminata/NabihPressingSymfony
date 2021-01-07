@@ -20,30 +20,35 @@ class Client
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=40)
      */
-    private $NumClient;
+    private $Nom;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=200)
      */
-    private $NomClient;
+    private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=200)
      */
-    private $PrenomClient;
+    private $addresse;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="integer")
      */
-    private $AddresseClient;
+    private $numero;
 
     /**
      * @ORM\OneToMany(targetEntity=LotHabit::class, mappedBy="Client")
      */
     private $lotHabits;
-
+    public function __toString()
+    {
+        $format = "
+         %s, %s , %s \n";
+        return sprintf($format, $this->Nom,$this->prenom,$this->numero);
+    }
     public function __construct()
     {
         $this->lotHabits = new ArrayCollection();
@@ -54,50 +59,50 @@ class Client
         return $this->id;
     }
 
-    public function getNumClient(): ?string
+    public function getNom(): ?string
     {
-        return $this->NumClient;
+        return $this->Nom;
     }
 
-    public function setNumClient(string $NumClient): self
+    public function setNom(string $Nom): self
     {
-        $this->NumClient = $NumClient;
+        $this->Nom = $Nom;
 
         return $this;
     }
 
-    public function getNomClient(): ?string
+    public function getPrenom(): ?string
     {
-        return $this->NomClient;
+        return $this->prenom;
     }
 
-    public function setNomClient(string $NomClient): self
+    public function setPrenom(string $prenom): self
     {
-        $this->NomClient = $NomClient;
+        $this->prenom = $prenom;
 
         return $this;
     }
 
-    public function getPrenomClient(): ?string
+    public function getAddresse(): ?string
     {
-        return $this->PrenomClient;
+        return $this->addresse;
     }
 
-    public function setPrenomClient(string $PrenomClient): self
+    public function setAddresse(string $addresse): self
     {
-        $this->PrenomClient = $PrenomClient;
+        $this->addresse = $addresse;
 
         return $this;
     }
 
-    public function getAddresseClient(): ?string
+    public function getNumero(): ?int
     {
-        return $this->AddresseClient;
+        return $this->numero;
     }
 
-    public function setAddresseClient(string $AddresseClient): self
+    public function setNumero(int $numero): self
     {
-        $this->AddresseClient = $AddresseClient;
+        $this->numero = $numero;
 
         return $this;
     }

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Achat index{% endblock %}
+{% block title %}Achat {% endblock %}
 
 {% block body %}
-    <h1>Achat index</h1>
+    <h1>Achat </h1>
 
-    <table class="table">
+    <table class=" table table-bordered ">
         <thead>
             <tr>
                 <th>Id</th>
@@ -13,7 +13,7 @@
                 <th>PrixAchat</th>
                 <th>DateAchat</th>
                 <th>NumeroFacture</th>
-                <th>Nom Utilisateur</th>
+              <th>Mail Utilisateur</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,8 +25,8 @@
                 <td>{{ achat.PrixAchat }}</td>
                 <td>{{ achat.DateAchat ? achat.DateAchat|date('Y-m-d') : '' }}</td>
                 <td>{{ achat.NumeroFacture }}</td>
-                <td>{{ achat. Nom_utilisateur}}</td>
-               
+                 <td>{{ achat.User }}</td>
+                 
                 <td>
                     <a href="{{ path('achat_show', {'id': achat.id}) }}">show</a>
                     <a href="{{ path('achat_edit', {'id': achat.id}) }}">edit</a>
@@ -34,7 +34,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="7">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

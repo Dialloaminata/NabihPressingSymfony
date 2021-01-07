@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TypeHabit{% endblock %}
+
+{% block body %}
+    <h1>Edit TypeHabit</h1>
+
+    {{ include('type_habit/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('type_habit_index') }}">back to list</a>
+
+    {{ include('type_habit/_delete_form.html.twig') }}
+{% endblock %}

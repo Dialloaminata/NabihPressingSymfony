@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Facture  {% endblock %}
+
+{% block body %}
+    <h1>Facture </h1>
+
+    <table class="table table-bordered ">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ReferenceLot</th>
+                <th>DateDepot</th>
+                <th>DateRetrait</th>
+                <th>Etat</th>
+                <th>Client</th>
+                <th>Composant </th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lot_habit in lot_habits %}
+            <tr>
+                <td>{{ lot_habit.id }}</td>
+                <td>{{ lot_habit.ReferenceLot }}</td>
+                <td>{{ lot_habit.DateDepot ? lot_habit.DateDepot|date('Y-m-d') : '' }}</td>
+                <td>{{ lot_habit.DateRetrait ? lot_habit.DateRetrait|date('Y-m-d') : '' }}</td>
+                <td>{{ lot_habit.Etat }}</td>
+                <td>{{ lot_habit.Client }}</td>
+                
+                 <td> {% for habit in  lot_habit.habit  %}{{ habit.ReferenceHabit }} </br> {% endfor %}</td>
+                  
+               
+                
+              
+                <td>
+                    <a href="{{ path('lot_habit_show', {'id': lot_habit.id}) }}">show</a>
+                    <a href="{{ path('lot_habit_edit', {'id': lot_habit.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('lot_habit_new') }}">Create new</a>
+{% endblock %}

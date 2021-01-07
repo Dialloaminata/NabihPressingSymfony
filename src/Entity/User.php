@@ -42,6 +42,11 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $Username;
+    public function __toString()
+    {
+        $format = "%s \n";
+        return sprintf($format, $this->email);
+    }
 
     /**
      * @ORM\OneToMany(targetEntity=Achat::class, mappedBy="User")
@@ -78,7 +83,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->Username;
     }
 
     /**
@@ -131,7 +136,6 @@ class User implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
     public function setUsername(string $Username): self
     {
         $this->Username = $Username;
