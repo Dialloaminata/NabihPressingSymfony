@@ -14,6 +14,7 @@
                 <th>DateRetrait</th>
                 <th>Etat</th>
                 <th>Client</th>
+                <td> Prix </td>
                 <th>Composant </th>
                 <th>actions</th>
             </tr>
@@ -27,6 +28,7 @@
                 <td>{{ lot_habit.DateRetrait ? lot_habit.DateRetrait|date('Y-m-d') : '' }}</td>
                 <td>{{ lot_habit.Etat }}</td>
                 <td>{{ lot_habit.Client }}</td>
+                  <td>{{ lot_habit.prix }}</td>
                 
                  <td> {% for habit in  lot_habit.habit  %}{{ habit.ReferenceHabit }} </br> {% endfor %}</td>
                   

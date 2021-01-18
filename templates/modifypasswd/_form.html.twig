@@ -1,4 +1,4 @@
-<div class=" container center col-sm-8">
+ <div class=" container center col-sm-8">
   <fieldset class="container center col-sm-6 border border-secondary"  >
      <legend> <h1> New  Facture</h1></legend>
 {{ form_start(form) }}
@@ -8,7 +8,11 @@
        <button class="btn ">{{ button_label|default('Save') }}</button>
       </div>
   
+    <div class="col">
+      <!-- Simple link -->
+      <a href="{{ path('lot_habit_index') }}" class="btn " role="button" aria-disabled="true">Back To list</a>
     
+    </div>
   </div>
     </fieldset>
         </div>

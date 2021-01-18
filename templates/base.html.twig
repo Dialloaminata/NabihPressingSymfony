@@ -168,10 +168,94 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
-       {% block body %}{% endblock %}
+    <div  style="background-image:url('\dist\img\photo4.jpg')">
+    
+    <section class="content" >
+       {% block body %}
+         <table class=" table table-bordered ">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>TypeAchat</th>
+                <th>PrixAchat</th>
+                <th>DateAchat</th>
+                <th>NumeroFacture</th>
+              <th>Mail Utilisateur</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+        {% for achat in achats %}
+            <tr>
+                <td>{{ achat.id }}</td>
+                <td>{{ achat.TypeAchat }}</td>
+                <td>{{ achat.PrixAchat }}</td>
+                <td>{{ achat.DateAchat ? achat.DateAchat|date('Y-m-d') : '' }}</td>
+                <td>{{ achat.NumeroFacture }}</td>
+                 <td>{{ achat.User }}</td>
+                 
+               
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   
+
+ <h1>   <strong> Total Achat :10000 </strong> </h1>
+      
+  
+<table class="table table-bordered ">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ReferenceLot</th>
+                <th>DateDepot</th>
+                <th>DateRetrait</th>
+                <th>Etat</th>
+                <th>Client</th>
+                <td> Prix </td>
+                <th>Composant </th>
+               
+            </tr>
+        </thead>
+        <tbody>
+        {% for lot_habit in lot_habits %}
+            <tr>
+                <td>{{ lot_habit.id }}</td>
+                <td>{{ lot_habit.ReferenceLot }}</td>
+                <td>{{ lot_habit.DateDepot ? lot_habit.DateDepot|date('Y-m-d') : '' }}</td>
+                <td>{{ lot_habit.DateRetrait ? lot_habit.DateRetrait|date('Y-m-d') : '' }}</td>
+                <td>{{ lot_habit.Etat }}</td>
+                <td>{{ lot_habit.Client }}</td>
+                  <td>{{ lot_habit.prix }}</td>
+                
+                 <td> {% for habit in  lot_habit.habit  %}{{ habit.ReferenceHabit }} </br> {% endfor %}</td>
+                  
+               
+                
+              
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+ <h1>   <strong> Total :2800 </h1>
+      
+           
+          
+       {% endblock %}
    
     </section>
+    </div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -192,42 +276,42 @@
   </aside>
   <!-- /.control-sidebar -->
 </div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+<!-- jQuery 3 -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+  $.widget.bridge('uibutton', $.ui.button);
 </script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- ChartJS -->
-<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{{asset('plugins/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<!-- Morris.js charts -->
+<script src="{{asset('plugins/bower_components/raphael/raphael.min.js')}}"></script>
+<script src="{{asset('plugins/bower_components/morris.js/morris.min.js')}}"></script>
 <!-- Sparkline -->
-<script src="{{asset('plugins/sparklines/sparkline.js')}}"></script>
-<!-- JQVMap -->
-<script src="{{asset('plugins/jqvmap/jquery.vmap.min.js')}}"></script>
-<script src="{{asset('plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+<script src="{{asset('plugins/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js')}}"></script>
+<!-- jvectormap -->
+<script src="{{asset('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
+<script src="{{asset('plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
 <!-- jQuery Knob Chart -->
-<script src="{{asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+<script src="{{asset('bower_components/jquery-knob/dist/jquery.knob.min.js')}}"></script>
 <!-- daterangepicker -->
-<script src="{{asset('plugins/moment/moment.min.js')}}"></script>
-<script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="{{asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-<!-- Summernote -->
-<script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
-<!-- overlayScrollbars -->
-<script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+<script src="{{asset('bower_components/moment/min/moment.min.js')}}"></script>
+<script src="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+<!-- datepicker -->
+<script src="{{asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+<!-- Slimscroll -->
+<script src="{{asset('plugins/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<!-- FastClick -->
+<script src="{{asset('plugins/bower_components/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('dist/js/adminlte.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('dist/js/demo.js')}}"></script>
+<script src="{{asset('dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{asset('dist/js/demo.js')}}"></script>
 </body>
 </html>
